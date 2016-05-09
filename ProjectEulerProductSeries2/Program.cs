@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Numerics;
 
 namespace ProjectEulerProductSeries2
 {
@@ -18,12 +19,12 @@ namespace ProjectEulerProductSeries2
                 for (short j = 0; j < series.Length - 12; j++)
                 {
                     double product = 1;
-                    for (int k = j; k < j + 13; k++) product *= char.GetNumericValue(series[Convert.ToInt32(k)]);
+                    for (int k = j; k < j + 13; k++) product *= char.GetNumericValue(series[k]);
                     if (product > maxProduct) maxProduct = product;
                 }
                 sw.Stop();
                 double time = 1000 * sw.ElapsedTicks / (double)Stopwatch.Frequency;
-                if (time < min) min = time;
+                if (min > time) min = time;
             }
             Console.WriteLine(maxProduct);
             Console.WriteLine("Minimum time in milliseconds: " + min);
