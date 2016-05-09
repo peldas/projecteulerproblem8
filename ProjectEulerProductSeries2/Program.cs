@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Numerics;
 
 namespace ProjectEulerProductSeries2
 {
@@ -10,6 +9,7 @@ namespace ProjectEulerProductSeries2
         {
             double min = 100;
             double maxProduct = 1;
+            double product, time;
             for (int a = 0; a < 200000; a++)
             {
                 Stopwatch sw = Stopwatch.StartNew();
@@ -18,12 +18,12 @@ namespace ProjectEulerProductSeries2
                 
                 for (short j = 0; j < series.Length - 12; j++)
                 {
-                    double product = 1;
+                    product = 1;
                     for (int k = j; k < j + 13; k++) product *= char.GetNumericValue(series[k]);
                     if (product > maxProduct) maxProduct = product;
                 }
                 sw.Stop();
-                double time = 1000 * sw.ElapsedTicks / (double)Stopwatch.Frequency;
+                time = 1000 * sw.ElapsedTicks / (double)Stopwatch.Frequency;
                 if (min > time) min = time;
             }
             Console.WriteLine(maxProduct);
